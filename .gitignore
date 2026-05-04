@@ -1,3 +1,8 @@
 .venv
 data/
 .DS_Store
+session_anomaly_report.csv
+session_anomaly_tags.csv
+outputs/final_session_anomaly_result.csv
+visitor_anomaly_tags.csv
+group_anomaly_report.csv

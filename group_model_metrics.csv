@@ -1,11 +1,11 @@
 model,feature_set,evaluation_type,accuracy,precision,recall,f1_score,roc_auc,pr_auc,support_anomaly,predicted_anomaly
-Dummy baseline,safe_features,Baseline vs pseudo-label,0.9538,0.0172,0.0168,0.017,0.4967,0.0236,1187,1162
-XGBoost,safe_features,Main supervised vs pseudo-label,0.9628,0.3891,0.9933,0.5592,0.9939,0.7915,1187,3030
-Decision Tree,safe_features,Main supervised vs pseudo-label,0.9369,0.2726,0.9949,0.428,0.9876,0.6004,1187,4332
-Random Forest,safe_features,Main supervised vs pseudo-label,0.9519,0.3299,0.9949,0.4955,0.9921,0.728,1187,3580
-XGBoost,full_features,Rule-mimic / agreement with business rules,0.9993,0.9705,0.9992,0.9846,1.0,0.9999,1187,1222
-Decision Tree,full_features,Rule-mimic / agreement with business rules,0.9949,0.8257,0.9975,0.9035,0.9999,0.9945,1187,1434
-Random Forest,full_features,Rule-mimic / agreement with business rules,0.9941,0.8019,0.9992,0.8897,0.9999,0.9962,1187,1479
-XGBoost shuffled-label sanity check,safe_features,Sanity check: shuffled labels should fail,0.5016,0.0135,0.2772,0.0257,0.2912,0.0508,1187,24390
-K-Means,safe_features,Unsupervised overlap with pseudo-label,0.9392,0.1292,0.2722,0.1753,0.5492,0.0731,33421,70379
-Isolation Forest,safe_features,Unsupervised overlap with pseudo-label,0.9473,0.2096,0.4398,0.2839,0.9295,0.224,33421,70114
+Dummy baseline,safe_features,Baseline vs session pseudo-label,0.9332,0.0454,0.0451,0.0453,0.5053,0.0356,2106,2091
+XGBoost,safe_features,Main supervised vs session pseudo-label,0.9702,0.542,0.9734,0.6963,0.9913,0.9219,2106,3782
+Decision Tree,safe_features,Main supervised vs session pseudo-label,0.9642,0.4948,0.972,0.6558,0.9835,0.731,2106,4137
+Random Forest,safe_features,Main supervised vs session pseudo-label,0.9622,0.4812,0.9748,0.6444,0.9899,0.8954,2106,4266
+XGBoost,full_features,Rule-mimic / agreement with session business rules,0.9999,0.9962,1.0,0.9981,1.0,1.0,2106,2114
+Decision Tree,full_features,Rule-mimic / agreement with session business rules,0.9917,0.8094,1.0,0.8946,0.9999,0.9967,2106,2602
+Random Forest,full_features,Rule-mimic / agreement with session business rules,0.9958,0.8924,1.0,0.9431,0.9999,0.9977,2106,2360
+XGBoost shuffled-label sanity check,safe_features,Sanity check: shuffled labels should fail,0.4106,0.0147,0.2384,0.0276,0.2494,0.0532,2106,34264
+K-Means,safe_features,Unsupervised overlap with session pseudo-label,0.9483,0.3343,0.4761,0.3928,0.926,0.366,61849,88084
+Isolation Forest,safe_features,Unsupervised overlap with session pseudo-label,0.9475,0.3261,0.4657,0.3836,0.9383,0.3555,61849,88325

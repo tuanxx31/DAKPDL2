@@ -1,9 +1,13 @@
 rule,business_condition,rule_input_features,leaked_inputs_in_full_features,inputs_remaining_in_safe_features,n_leaked_inputs
-BR01_bot_scraper,events_per_day > 100,"['events_per_day', 'total_events', 'active_days']","['events_per_day', 'total_events', 'active_days']",[],3
+BR01_bot_scraper,total_events >= 12 or events_per_minute >= 8 with enough events,"['total_events', 'events_per_minute']","['total_events', 'events_per_minute']",[],2
 BR02_ghost_buyer,n_transaction > 0 and n_addtocart == 0,"['n_transaction', 'n_addtocart']","['n_transaction', 'n_addtocart']",[],2
-BR03_click_fraud,n_view >= 50 and n_addtocart == 0 and n_transaction == 0,"['n_view', 'n_addtocart', 'n_transaction']","['n_view', 'n_addtocart', 'n_transaction']",[],3
-BR04_rapid_fire,rapid_ratio > 0.30 and total_events > 5,"['rapid_ratio', 'rapid_fire_count', 'total_events']","['rapid_ratio', 'rapid_fire_count', 'total_events']",[],3
-BR05_night_crawler,night_ratio > 0.80 and total_events >= 10,"['night_ratio', 'night_events', 'total_events']","['night_ratio', 'night_events', 'total_events']",[],3
-BR06_item_hoarding,max_same_item_atc > 5,['max_same_item_atc'],['max_same_item_atc'],[],1
-BR07_session_bomb,max_items_per_day > 200,['max_items_per_day'],['max_items_per_day'],[],1
-BR08_sequence_violation,transaction before prior view/addtocart on same visitor-item timeline,['raw_event_sequence'],[],[],0
+BR03_click_fraud,n_view >= 6 and n_addtocart == 0 and n_transaction == 0,"['n_view', 'n_addtocart', 'n_transaction']","['n_view', 'n_addtocart', 'n_transaction']",[],3
+BR04_rapid_fire,rapid_fire_count >= 1 or rapid_ratio >= 0.20 with enough events,"['rapid_fire_count', 'rapid_ratio', 'total_events']","['rapid_fire_count', 'rapid_ratio', 'total_events']",[],3
+BR05_night_crawler,night_ratio >= 0.75 and total_events >= 4,"['night_ratio', 'night_events', 'total_events']","['night_ratio', 'night_events', 'total_events']",[],3
+BR06_item_hoarding,max_same_item_atc > 1,['max_same_item_atc'],['max_same_item_atc'],[],1
+BR07_session_bomb,unique_items >= 12,['unique_items'],['unique_items'],[],1
+BR08_sequence_violation,transaction before prior view/addtocart on same session-item timeline,['raw_event_sequence'],[],[],0
+BR09_transaction_burst,n_transaction >= 3,['n_transaction'],['n_transaction'],[],1
+BR10_cart_abandonment,n_addtocart >= 10 and n_transaction == 0,"['n_addtocart', 'n_transaction']","['n_addtocart', 'n_transaction']",[],2
+BR11_repeated_view_spam,max_same_item_view >= 20,['max_same_item_view'],['max_same_item_view'],[],1
+BR12_category_scanning,unique_categories >= 20,['unique_categories'],['unique_categories'],[],1
