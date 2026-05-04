@@ -1,11 +1,11 @@
 model,feature_set,evaluation_type,accuracy,precision,recall,f1_score,roc_auc,pr_auc,support_anomaly,predicted_anomaly
-Dummy baseline,safe_features,Baseline vs pseudo-label,0.9911,0.0,0.0,0.0,0.4977,0.0043,217,228
-XGBoost,safe_features,Main supervised vs pseudo-label,0.9723,0.1321,0.9677,0.2324,0.9945,0.4605,217,1590
-Decision Tree,safe_features,Main supervised vs pseudo-label,0.9551,0.0855,0.9631,0.157,0.9854,0.1547,217,2445
-Random Forest,safe_features,Main supervised vs pseudo-label,0.971,0.1269,0.9677,0.2244,0.9931,0.3823,217,1655
-XGBoost,full_features,Rule-mimic / agreement with business rules,0.9985,0.7457,1.0,0.8543,1.0,0.9967,217,291
-Decision Tree,full_features,Rule-mimic / agreement with business rules,0.9835,0.2064,0.9862,0.3413,0.9923,0.9063,217,1037
-Random Forest,full_features,Rule-mimic / agreement with business rules,0.9928,0.3739,0.9908,0.5429,0.9996,0.9453,217,575
-XGBoost shuffled-label sanity check,safe_features,Sanity check: shuffled labels should fail,0.653,0.0017,0.1382,0.0034,0.1785,0.0042,217,17194
-K-Means,safe_features,Unsupervised overlap with pseudo-label,0.9476,0.0198,0.227,0.0363,0.5056,0.0107,6122,70379
-Isolation Forest,safe_features,Unsupervised overlap with pseudo-label,0.9503,0.0445,0.51,0.0819,0.9342,0.0602,6122,70114
+Dummy baseline,safe_features,Baseline vs pseudo-label,0.9538,0.0172,0.0168,0.017,0.4967,0.0236,1187,1162
+XGBoost,safe_features,Main supervised vs pseudo-label,0.9628,0.3891,0.9933,0.5592,0.9939,0.7915,1187,3030
+Decision Tree,safe_features,Main supervised vs pseudo-label,0.9369,0.2726,0.9949,0.428,0.9876,0.6004,1187,4332
+Random Forest,safe_features,Main supervised vs pseudo-label,0.9519,0.3299,0.9949,0.4955,0.9921,0.728,1187,3580
+XGBoost,full_features,Rule-mimic / agreement with business rules,0.9993,0.9705,0.9992,0.9846,1.0,0.9999,1187,1222
+Decision Tree,full_features,Rule-mimic / agreement with business rules,0.9949,0.8257,0.9975,0.9035,0.9999,0.9945,1187,1434
+Random Forest,full_features,Rule-mimic / agreement with business rules,0.9941,0.8019,0.9992,0.8897,0.9999,0.9962,1187,1479
+XGBoost shuffled-label sanity check,safe_features,Sanity check: shuffled labels should fail,0.5016,0.0135,0.2772,0.0257,0.2912,0.0508,1187,24390
+K-Means,safe_features,Unsupervised overlap with pseudo-label,0.9392,0.1292,0.2722,0.1753,0.5492,0.0731,33421,70379
+Isolation Forest,safe_features,Unsupervised overlap with pseudo-label,0.9473,0.2096,0.4398,0.2839,0.9295,0.224,33421,70114
