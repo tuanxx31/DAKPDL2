@@ -1,0 +1,9 @@
+rule,business_condition,rule_input_features,leaked_inputs_in_full_features,inputs_remaining_in_safe_features,n_leaked_inputs
+BR01_bot_scraper,events_per_day > 100,"['events_per_day', 'total_events', 'active_days']","['events_per_day', 'total_events', 'active_days']",[],3
+BR02_ghost_buyer,n_transaction > 0 and n_addtocart == 0,"['n_transaction', 'n_addtocart']","['n_transaction', 'n_addtocart']",[],2
+BR03_click_fraud,n_view >= 50 and n_addtocart == 0 and n_transaction == 0,"['n_view', 'n_addtocart', 'n_transaction']","['n_view', 'n_addtocart', 'n_transaction']",[],3
+BR04_rapid_fire,rapid_ratio > 0.30 and total_events > 5,"['rapid_ratio', 'rapid_fire_count', 'total_events']","['rapid_ratio', 'rapid_fire_count', 'total_events']",[],3
+BR05_night_crawler,night_ratio > 0.80 and total_events >= 10,"['night_ratio', 'night_events', 'total_events']","['night_ratio', 'night_events', 'total_events']",[],3
+BR06_item_hoarding,max_same_item_atc > 5,['max_same_item_atc'],['max_same_item_atc'],[],1
+BR07_session_bomb,max_items_per_day > 200,['max_items_per_day'],['max_items_per_day'],[],1
+BR08_sequence_violation,transaction before prior view/addtocart on same visitor-item timeline,['raw_event_sequence'],[],[],0

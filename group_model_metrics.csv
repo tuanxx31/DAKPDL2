@@ -1,0 +1,11 @@
+model,feature_set,evaluation_type,accuracy,precision,recall,f1_score,roc_auc,pr_auc,support_anomaly,predicted_anomaly
+Dummy baseline,safe_features,Baseline vs pseudo-label,0.9911,0.0,0.0,0.0,0.4977,0.0043,217,228
+XGBoost,safe_features,Main supervised vs pseudo-label,0.9723,0.1321,0.9677,0.2324,0.9945,0.4605,217,1590
+Decision Tree,safe_features,Main supervised vs pseudo-label,0.9551,0.0855,0.9631,0.157,0.9854,0.1547,217,2445
+Random Forest,safe_features,Main supervised vs pseudo-label,0.971,0.1269,0.9677,0.2244,0.9931,0.3823,217,1655
+XGBoost,full_features,Rule-mimic / agreement with business rules,0.9985,0.7457,1.0,0.8543,1.0,0.9967,217,291
+Decision Tree,full_features,Rule-mimic / agreement with business rules,0.9835,0.2064,0.9862,0.3413,0.9923,0.9063,217,1037
+Random Forest,full_features,Rule-mimic / agreement with business rules,0.9928,0.3739,0.9908,0.5429,0.9996,0.9453,217,575
+XGBoost shuffled-label sanity check,safe_features,Sanity check: shuffled labels should fail,0.653,0.0017,0.1382,0.0034,0.1785,0.0042,217,17194
+K-Means,safe_features,Unsupervised overlap with pseudo-label,0.9476,0.0198,0.227,0.0363,0.5056,0.0107,6122,70379
+Isolation Forest,safe_features,Unsupervised overlap with pseudo-label,0.9503,0.0445,0.51,0.0819,0.9342,0.0602,6122,70114
