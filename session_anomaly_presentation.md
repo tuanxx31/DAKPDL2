@@ -81,13 +81,15 @@ Phân bố anomaly type:
 
 Metric chính dùng `safe_features`, đã loại các feature trực tiếp tạo nhãn luật để giảm label leakage.
 
+Dữ liệu được chia thành `train` / `validation` / `test` theo tỉ lệ 60/20/20. Validation dùng để chọn threshold dự đoán hoặc anomaly score; bảng dưới đây là kết quả test dùng để báo cáo cuối.
+
 | Model | Precision | Recall | F1-score | PR-AUC |
 | --- | ---: | ---: | ---: | ---: |
-| XGBoost | 0.5420 | 0.9734 | 0.6963 | 0.9219 |
-| Decision Tree | 0.4948 | 0.9720 | 0.6558 | 0.7310 |
-| Random Forest | 0.4812 | 0.9748 | 0.6444 | 0.8954 |
-| K-Means | 0.3343 | 0.4761 | 0.3928 | 0.3660 |
-| Isolation Forest | 0.3261 | 0.4657 | 0.3836 | 0.3555 |
+| XGBoost | 0.8122 | 0.9055 | 0.8563 | 0.9216 |
+| Decision Tree | 0.6363 | 0.8082 | 0.7120 | 0.7228 |
+| Random Forest | 0.8049 | 0.9031 | 0.8512 | 0.8986 |
+| K-Means | 0.3112 | 0.6102 | 0.4122 | 0.3835 |
+| Isolation Forest | 0.2998 | 0.6695 | 0.4142 | 0.3557 |
 
 ## 8. Đánh giá
 
@@ -95,6 +97,7 @@ Metric chính dùng `safe_features`, đã loại các feature trực tiếp tạ
 - Random Forest gần XGBoost, phù hợp để giải thích bằng feature importance.
 - Decision Tree thấp hơn nhưng dễ trình bày, phù hợp minh họa logic phân loại.
 - K-Means và Isolation Forest thấp hơn vì không dùng nhãn khi huấn luyện; kết quả dùng để đánh giá overlap với pseudo-label.
+- Validation giúp chọn threshold trước khi nhìn test, tránh chọn ngưỡng theo cảm tính trên tập test.
 - Accuracy không nên là metric chính vì dữ liệu mất cân bằng.
 - PR-AUC, precision, recall và F1-score quan trọng hơn.
 
