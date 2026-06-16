@@ -170,6 +170,23 @@ Trình bày theo 6 bước:
 
 `objective='binary:logistic'`, `tree_method='hist'`; `max_depth=4` (cây nông chống overfit); `learning_rate=0.08` + `n_estimators=120` (học từ từ); `subsample=0.85`, `colsample_bytree=0.85` (lấy mẫu ngẫu nhiên tăng tổng quát); `scale_pos_weight = neg/pos` (bù lớp bất thường hiếm). **Ngưỡng = 0,869**, chọn tối ưu F1 trên validation rồi cố định áp lên test.
 
+### XỬ LÝ MẤT CÂN BẰNG DỮ LIỆU (chỉ ~3,5% là bất thường)
+
+Đây là vấn đề cốt lõi của bài toán: lớp bất thường chỉ chiếm ~3,51%, nếu không xử lý thì mô hình sẽ thiên về dự đoán "tất cả bình thường". Nhóm xử lý ở **4 tầng**, không dùng oversampling tổng hợp:
+
+1. **Cân bằng ở mức thuật toán (trọng số lớp) — cách chính:**
+   - XGBoost & LightGBM: `scale_pos_weight = số mẫu âm / số mẫu dương`, tăng trọng số phạt khi bỏ sót anomaly.
+   - Decision Tree: `class_weight='balanced'`; Random Forest: `class_weight='balanced_subsample'` — tự động tăng trọng số cho lớp hiếm theo tần suất.
+   - *Ý nghĩa:* buộc mô hình "quan tâm" đến lớp bất thường tương xứng dù số lượng ít → cải thiện recall.
+
+2. **Lấy mẫu phân tầng (stratified sampling):** khi rút 300.000 session từ toàn bộ, dùng `stratify=y` để giữ đúng tỉ lệ ~3,5% anomaly trong cả train/validation/test → không tập nào bị mất sạch lớp hiếm.
+
+3. **Tinh chỉnh ngưỡng quyết định (threshold tuning):** không mặc định cắt 0,5 mà quét ngưỡng tối ưu F1 trên validation (XGBoost = 0,869) rồi cố định áp lên test → bù trực tiếp cho sự lệch lớp.
+
+4. **Chọn metric phù hợp lớp hiếm:** bỏ accuracy, dùng Precision/Recall/F1 và **PR-AUC** (xem Phần 5) để đánh giá đúng năng lực bắt lớp thiểu số.
+
+**Vì sao KHÔNG dùng SMOTE / oversampling tổng hợp?** Hai lý do: (1) các kỹ thuật trọng số lớp đã đủ hiệu quả và rẻ hơn; (2) SMOTE tạo session "nhân tạo" bằng nội suy, có thể sinh ra mẫu hành vi phi thực tế làm méo tín hiệu thời gian/nhịp vốn rất nhạy của bài toán này. Đây là lựa chọn có chủ đích, có thể nêu nếu giám khảo hỏi.
+
 ---
 
 ## PHẦN 5 — ĐÁNH GIÁ KẾT QUẢ
@@ -271,6 +288,9 @@ Hành vi bất thường (bot, rapid-fire, click fraud) thường xảy ra gọn
 
 **Q5. Vì sao không dùng accuracy làm metric chính?**
 Dữ liệu mất cân bằng nặng (~3,5% bất thường). Đoán "tất cả bình thường" đã đạt ~96,5% accuracy nhưng vô dụng. Nên dùng precision, recall, F1 và PR-AUC.
+
+**Q5b. Các em xử lý mất cân bằng dữ liệu như thế nào?**
+Bọn em xử lý ở 4 tầng: (1) trọng số lớp ở mức thuật toán — `scale_pos_weight` cho XGBoost/LightGBM, `class_weight='balanced'` cho Decision Tree và `'balanced_subsample'` cho Random Forest; (2) lấy mẫu phân tầng (`stratify`) để giữ đúng tỉ lệ ~3,5% ở mọi tập; (3) tinh chỉnh ngưỡng tối ưu F1 trên validation thay vì cắt mặc định 0,5; (4) chọn metric PR-AUC/F1 thay cho accuracy. Bọn em không dùng SMOTE vì trọng số lớp đã đủ, và việc nội suy session nhân tạo có thể làm méo tín hiệu thời gian/nhịp vốn rất nhạy của bài toán.
 
 **Q6. Tại sao chia dữ liệu theo nhóm visitor (group split)?**
 Vì session sinh ra từ visitor. Nếu chia ngẫu nhiên theo session, các session của cùng visitor có thể nằm cả ở train lẫn test, khiến mô hình "thấy trước" người đó và metric cao giả. Group split theo `visitorid` đảm bảo không visitor nào xuất hiện ở nhiều tập — có kiểm tra tự động xác nhận 0 trùng lặp.
