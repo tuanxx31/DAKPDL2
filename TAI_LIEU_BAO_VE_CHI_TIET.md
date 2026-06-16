@@ -223,6 +223,42 @@ if leakage_audit_df['inputs_remaining_in_safe_features'].str.len().sum() != 0:
 - `full_features` (37) → chỉ để minh họa hiện tượng "học lại luật" (Phần 11).
 - File `group_leakage_audit.csv` ghi rõ mỗi luật dùng biến gì và biến nào đã bị loại.
 
+### 5.1. Tổng kết số lượng đặc trưng
+
+| Bộ đặc trưng | Số lượng | Vai trò |
+| --- | --- | --- |
+| `full_feature_cols` | **37** | Toàn bộ đặc trưng số của session; chỉ dùng cho **bảng phụ** minh họa label leakage (rule-mimic). |
+| `safe_feature_cols` | **15** | **Bộ dùng để TRAIN** mọi mô hình báo cáo chính (XGBoost, Decision Tree, Random Forest, LightGBM, Isolation Forest). |
+| Bị loại khỏi safe (leaky) | **22** | Là `full − safe`: các biến trực tiếp/gián tiếp tạo ra luật, **không** đưa vào train chính. |
+
+### 5.2. 15 đặc trưng DÙNG ĐỂ TRAIN (`safe_feature_cols`)
+
+| # | Đặc trưng | Ý nghĩa |
+| --- | --- | --- |
+| 1 | `session_duration_sec` | Thời lượng phiên (giây). |
+| 2 | `active_hours` | Số khung giờ khác nhau có hoạt động trong phiên. |
+| 3 | `unique_event_types` | Số loại sự kiện khác nhau (view/addtocart/transaction). |
+| 4 | `event_type_entropy` | Entropy phân bố loại sự kiện — độ đa dạng hành vi. |
+| 5 | `hour_entropy` | Entropy phân bố giờ hoạt động — mức trải đều theo giờ. |
+| 6 | `mean_interval_sec` | Khoảng cách trung bình giữa các thao tác. |
+| 7 | `median_interval_sec` | Khoảng cách trung vị giữa các thao tác. |
+| 8 | `std_interval_sec` | Độ lệch chuẩn khoảng cách thao tác — bot bấm đều nên rất thấp. |
+| 9 | `max_interval_sec` | Khoảng cách lớn nhất giữa hai thao tác liên tiếp. |
+| 10 | `peak_events` | Số sự kiện trong khung giờ cao điểm (9h–21h). |
+| 11 | `weekend_events` | Số sự kiện vào cuối tuần. |
+| 12 | `peak_ratio` | Tỉ lệ sự kiện rơi vào giờ cao điểm. |
+| 13 | `weekend_ratio` | Tỉ lệ sự kiện rơi vào cuối tuần. |
+| 14 | `unique_parent_categories` | Số nhóm danh mục cha khác nhau đã chạm tới. |
+| 15 | `session_dayofweek` | Thứ trong tuần của phiên. |
+
+> Đây là các đặc trưng **về thời gian, nhịp thao tác và bối cảnh**, không phải biến đếm cấu thành luật → mô hình buộc phải học "dáng hành vi" thay vì chép lại điều kiện luật.
+
+### 5.3. 22 đặc trưng BỊ LOẠI khỏi train chính (chỉ có trong `full_features`)
+
+`total_events`, `unique_items`, `n_view`, `n_addtocart`, `n_transaction`, `events_per_minute`, `duration_min`, `min_interval_sec`, `rapid_fire_count`, `rapid_ratio`, `night_events`, `night_ratio`, `max_same_item_view`, `max_same_item_atc`, `unique_categories`, `view_rate`, `atc_rate`, `buy_rate`, `items_per_event`, `view_to_cart_ratio`, `cart_to_transaction_ratio`, `session_start_hour`.
+
+Lý do loại: đây là các biến **trực tiếp tạo ra luật** — ví dụ `total_events`→BR01, `n_transaction`/`n_addtocart`→BR02/BR09/BR10, `rapid_fire_count`→BR04, `night_ratio`→BR05, `max_same_item_atc`→BR06, `unique_items`→BR07, `max_same_item_view`→BR11, `unique_categories`→BR12. Nếu cho train sẽ gây label leakage.
+
 ---
 
 ## 6. CHIA DỮ LIỆU THEO NHÓM VISITOR (cell 16)

@@ -1,23 +1,23 @@
 model,feature_set,evaluation_type,split,threshold,accuracy,precision,recall,f1_score,roc_auc,pr_auc,support_anomaly,predicted_anomaly
-Dummy baseline,safe_features,Baseline so với nhãn giả phiên,validation,0.5,0.9333,0.0455,0.0452,0.0454,0.5054,0.0355,2102,2087
-Dummy baseline,safe_features,Baseline so với nhãn giả phiên,test,0.5,0.9327,0.0406,0.0402,0.0404,0.5027,0.0354,2116,2095
-XGBoost,safe_features,Main supervised so với nhãn giả phiên,validation,0.8693,0.9901,0.8138,0.9291,0.8676,0.9941,0.9284,2102,2400
-XGBoost,safe_features,Main supervised so với nhãn giả phiên,test,0.8693,0.9896,0.8119,0.9178,0.8616,0.9927,0.922,2116,2392
-Decision Tree,safe_features,Main supervised so với nhãn giả phiên,validation,0.9484,0.9812,0.7029,0.8026,0.7494,0.9884,0.7663,2102,2400
-Decision Tree,safe_features,Main supervised so với nhãn giả phiên,test,0.9484,0.9795,0.6842,0.775,0.7268,0.9871,0.747,2116,2397
-Random Forest,safe_features,Main supervised so với nhãn giả phiên,validation,0.8477,0.9894,0.805,0.9191,0.8583,0.9929,0.9118,2102,2400
-Random Forest,safe_features,Main supervised so với nhãn giả phiên,test,0.8477,0.9888,0.7989,0.9107,0.8511,0.9922,0.9019,2116,2412
-LightGBM,safe_features,Main supervised so với nhãn giả phiên,validation,0.8664,0.991,0.825,0.942,0.8796,0.9953,0.9418,2102,2400
-LightGBM,safe_features,Main supervised so với nhãn giả phiên,test,0.8664,0.9904,0.8196,0.9338,0.873,0.9944,0.9345,2116,2411
-XGBoost,full_features,Rule-mimic / agreement with session business rules,validation,0.5,0.9995,0.9887,0.9986,0.9936,1.0,0.9998,2102,2123
-XGBoost,full_features,Rule-mimic / agreement with session business rules,test,0.5,0.9996,0.9892,0.9995,0.9944,1.0,0.9999,2116,2138
-LightGBM,full_features,Rule-mimic / agreement with session business rules,validation,0.5,0.9998,0.9976,0.9981,0.9979,1.0,0.9999,2102,2103
-LightGBM,full_features,Rule-mimic / agreement with session business rules,test,0.5,0.9999,0.9981,0.9991,0.9986,1.0,0.9999,2116,2118
-Decision Tree,full_features,Rule-mimic / agreement with session business rules,validation,1.0,0.9981,1.0,0.9472,0.9729,0.9992,0.9958,2102,1991
-Decision Tree,full_features,Rule-mimic / agreement with session business rules,test,1.0,0.9978,1.0,0.9386,0.9683,0.9997,0.9963,2116,1986
-Random Forest,full_features,Rule-mimic / agreement with session business rules,validation,0.5158,0.9949,0.8743,0.999,0.9325,0.9999,0.9973,2102,2402
-Random Forest,full_features,Rule-mimic / agreement with session business rules,test,0.5158,0.9943,0.8615,0.9995,0.9254,0.9999,0.996,2116,2455
-XGBoost shuffled-label sanity check,safe_features,Sanity check: shuffled labels should fail,validation,0.5133,0.9401,0.1891,0.216,0.2016,0.334,0.0885,2102,2401
-XGBoost shuffled-label sanity check,safe_features,Sanity check: shuffled labels should fail,test,0.5133,0.9398,0.1948,0.2259,0.2092,0.3326,0.0922,2116,2454
-Isolation Forest,safe_features,Unsupervised overlap with session pseudo-label,validation,0.5524,0.9308,0.2867,0.6546,0.3988,0.9359,0.3399,2102,4799
-Isolation Forest,safe_features,Unsupervised overlap with session pseudo-label,test,0.5524,0.9305,0.2907,0.6744,0.4063,0.9351,0.3578,2116,4909
+Dummy baseline,safe_features,Baseline so với nhãn giả phiên,validation,0.5,0.933,0.035,0.0344,0.0347,0.5,0.035,2095,2056
+Dummy baseline,safe_features,Baseline so với nhãn giả phiên,test,0.5,0.9329,0.0368,0.0357,0.0362,0.5007,0.0354,2131,2068
+XGBoost,safe_features,Mô hình giám sát chính so với nhãn giả phiên,validation,0.8724,0.9897,0.8098,0.9246,0.8634,0.9939,0.9298,2095,2392
+XGBoost,safe_features,Mô hình giám sát chính so với nhãn giả phiên,test,0.8724,0.9899,0.8078,0.9366,0.8674,0.9939,0.9302,2131,2471
+Decision Tree,safe_features,Mô hình giám sát chính so với nhãn giả phiên,validation,0.9734,0.9791,0.6645,0.8148,0.732,0.9869,0.7421,2095,2569
+Decision Tree,safe_features,Mô hình giám sát chính so với nhãn giả phiên,test,0.9734,0.9799,0.6737,0.8344,0.7455,0.989,0.7518,2131,2639
+Random Forest,safe_features,Mô hình giám sát chính so với nhãn giả phiên,validation,0.852,0.9896,0.8081,0.9227,0.8616,0.993,0.9083,2095,2392
+Random Forest,safe_features,Mô hình giám sát chính so với nhãn giả phiên,test,0.852,0.9896,0.8047,0.9301,0.8629,0.9933,0.9108,2131,2463
+LightGBM,safe_features,Mô hình giám sát chính so với nhãn giả phiên,validation,0.8604,0.9909,0.8244,0.9413,0.879,0.9954,0.9445,2095,2392
+LightGBM,safe_features,Mô hình giám sát chính so với nhãn giả phiên,test,0.8604,0.9908,0.8189,0.9507,0.8799,0.9949,0.9456,2131,2474
+XGBoost,full_features,Rule-mimic / agreement with session business rules,validation,0.5,0.9999,0.9986,0.9986,0.9986,1.0,0.9996,2095,2095
+XGBoost,full_features,Rule-mimic / agreement with session business rules,test,0.5,1.0,0.9995,1.0,0.9998,1.0,1.0,2131,2132
+LightGBM,full_features,Rule-mimic / agreement with session business rules,validation,0.5,0.9999,1.0,0.9981,0.999,1.0,0.9997,2095,2091
+LightGBM,full_features,Rule-mimic / agreement with session business rules,test,0.5,1.0,0.9995,0.9995,0.9995,1.0,1.0,2131,2131
+Decision Tree,full_features,Rule-mimic / agreement with session business rules,validation,0.9982,0.9962,0.9958,0.8955,0.943,0.9999,0.9959,2095,1884
+Decision Tree,full_features,Rule-mimic / agreement with session business rules,test,0.9982,0.9972,0.996,0.9249,0.9591,0.9999,0.9967,2131,1979
+Random Forest,full_features,Rule-mimic / agreement with session business rules,validation,0.5,0.9951,0.8769,0.9995,0.9342,0.9999,0.9979,2095,2388
+Random Forest,full_features,Rule-mimic / agreement with session business rules,test,0.5,0.9945,0.8662,0.9991,0.9279,0.9999,0.9979,2131,2458
+XGBoost shuffled-label sanity check,safe_features,Sanity check: shuffled labels should fail,validation,0.5075,0.9127,0.134,0.273,0.1798,0.3709,0.0754,2095,4269
+XGBoost shuffled-label sanity check,safe_features,Sanity check: shuffled labels should fail,test,0.5075,0.9123,0.1306,0.2623,0.1744,0.3499,0.0709,2131,4279
+Isolation Forest,safe_features,Unsupervised overlap with session pseudo-label,validation,0.5818,0.9371,0.3012,0.6019,0.4015,0.9347,0.3465,2095,4186
+Isolation Forest,safe_features,Unsupervised overlap with session pseudo-label,test,0.5818,0.9372,0.3071,0.618,0.4103,0.9407,0.3732,2131,4289

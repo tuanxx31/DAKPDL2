@@ -166,6 +166,16 @@ Trình bày theo 6 bước:
 - **Lớp 2 — Group split theo `visitorid`** (GroupShuffleSplit). Chia sao cho **không visitor nào xuất hiện ở hai tập**. Kiểm tra tự động xác nhận **0 visitor trùng** giữa train/val/test. → Tránh rò rỉ ở mức người dùng.
 - **Lớp 3 — Shuffle-label sanity check.** Train lại với nhãn xáo trộn ngẫu nhiên; nếu pipeline đúng thì điểm phải tụt mạnh. Kết quả: F1 tụt còn **0,21** → xác nhận pipeline không lỗi.
 
+### SỐ LƯỢNG ĐẶC TRƯNG & ĐẶC TRƯNG DÙNG ĐỂ TRAIN
+
+- **37** đặc trưng số tạo ra cho mỗi session (`full_feature_cols`) — chỉ dùng cho bảng phụ minh họa leakage.
+- **15** đặc trưng **dùng để TRAIN** mọi mô hình báo cáo chính (`safe_feature_cols`).
+- **22** đặc trưng còn lại bị loại khỏi train vì là biến trực tiếp tạo luật (label leakage).
+
+**15 đặc trưng huấn luyện (`safe_feature_cols`):** `session_duration_sec`, `active_hours`, `unique_event_types`, `event_type_entropy`, `hour_entropy`, `mean_interval_sec`, `median_interval_sec`, `std_interval_sec`, `max_interval_sec`, `peak_events`, `weekend_events`, `peak_ratio`, `weekend_ratio`, `unique_parent_categories`, `session_dayofweek`. Toàn bộ là đặc trưng về **thời gian, nhịp thao tác và bối cảnh** — không phải biến đếm cấu thành luật.
+
+**22 đặc trưng bị loại (chỉ có trong `full_features`):** `total_events`, `unique_items`, `n_view`, `n_addtocart`, `n_transaction`, `events_per_minute`, `duration_min`, `min_interval_sec`, `rapid_fire_count`, `rapid_ratio`, `night_events`, `night_ratio`, `max_same_item_view`, `max_same_item_atc`, `unique_categories`, `view_rate`, `atc_rate`, `buy_rate`, `items_per_event`, `view_to_cart_ratio`, `cart_to_transaction_ratio`, `session_start_hour`.
+
 ### Cấu hình XGBoost (phần nhóm trưởng)
 
 `objective='binary:logistic'`, `tree_method='hist'`; `max_depth=4` (cây nông chống overfit); `learning_rate=0.08` + `n_estimators=120` (học từ từ); `subsample=0.85`, `colsample_bytree=0.85` (lấy mẫu ngẫu nhiên tăng tổng quát); `scale_pos_weight = neg/pos` (bù lớp bất thường hiếm). **Ngưỡng = 0,869**, chọn tối ưu F1 trên validation rồi cố định áp lên test.
