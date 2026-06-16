@@ -22,6 +22,14 @@ XGBoost (Extreme Gradient Boosting) là thuật toán **boosting cây quyết đ
 
 XGBoost là **mô hình chính** (main supervised). Nó được huấn luyện trên `safe_features` (15 đặc trưng đã loại biến tạo luật) để kết quả không bị "chép luật". Các mô hình khác (LightGBM, Random Forest, Decision Tree, Isolation Forest) dùng để đối chiếu.
 
+### Đặc trưng đầu vào: bao nhiêu, gồm những gì, dùng gì để train
+
+- Mỗi session sinh ra **37** đặc trưng số (`full_feature_cols`).
+- XGBoost (và mọi mô hình chính) **chỉ train trên 15** đặc trưng an toàn (`safe_feature_cols`).
+- 22 đặc trưng còn lại (biến đếm trực tiếp tạo luật) bị loại để tránh label leakage; chúng chỉ xuất hiện trong bảng phụ `full_features`.
+
+**15 đặc trưng XGBoost dùng để train:** `session_duration_sec`, `active_hours`, `unique_event_types`, `event_type_entropy`, `hour_entropy`, `mean_interval_sec`, `median_interval_sec`, `std_interval_sec`, `max_interval_sec`, `peak_events`, `weekend_events`, `peak_ratio`, `weekend_ratio`, `unique_parent_categories`, `session_dayofweek`.
+
 ---
 
 ## 2. CÁCH DÙNG (CHẠY NHƯ THẾ NÀO)
@@ -38,7 +46,7 @@ XGBoost là **mô hình chính** (main supervised). Nó được huấn luyện 
 1. Cell cấu hình (import, hằng số `RANDOM_STATE`, đường dẫn).
 2. Cell định nghĩa `safe_feature_cols` / `full_feature_cols` (chống leakage).
 3. Cell chia dữ liệu theo nhóm visitor (train/val/test).
-4. Cell định nghĩa `choose_best_threshold` và `add_evaluation` (hàm dùng chung).
+4. Cell định nghĩa `choose_best_threshold`, `record_evaluation` và `train_and_evaluate_supervised_model` (hàm dùng chung).
 5. **Cell huấn luyện XGBoost** (phần chính bên dưới).
 6. Cell tổng hợp metric → xuất `group_model_metrics.csv`.
 
