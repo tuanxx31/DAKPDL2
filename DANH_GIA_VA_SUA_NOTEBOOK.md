@@ -30,19 +30,19 @@ Phân công đã đúng yêu cầu "mỗi thành viên 1 mô hình": XGBoost (Đ
 
 ## 3. Kết quả đã chạy xác minh (toàn bộ dữ liệu, ngưỡng mới)
 
-Pipeline chạy end-to-end **không lỗi**. Bảng chính (đa nhãn, safe features, tập test):
+Pipeline chạy end-to-end **không lỗi**. Bảng chính (đa nhãn, safe features, tập test — số chuẩn từ `group_model_metrics.csv`):
 
 | Mô hình (thành viên) | macro-F1 | micro-F1 | macro-PR-AUC |
 | --- | --- | --- | --- |
-| XGBoost (Đình Tuấn) | **0.631** | 0.806 | 0.646 |
-| LightGBM (Thủy) | 0.588 | 0.803 | 0.581 |
-| Decision Tree (Lê Văn Anh) | 0.533 | 0.712 | 0.557 |
-| Random Forest (Tuấn Anh) | 0.397 | 0.297 | 0.424 |
-| Extra Trees (Đức Anh) | 0.172 | 0.064 | 0.227 |
+| LightGBM (Thủy) | **0.642** | **0.816** | **0.659** |
+| XGBoost (Đình Tuấn, chính) | 0.628 | 0.790 | 0.646 |
+| Decision Tree (Lê Văn Anh) | 0.536 | 0.718 | 0.550 |
+| Random Forest (Tuấn Anh) | 0.361 | 0.251 | 0.417 |
+| Extra Trees (Đức Anh) | 0.227 | 0.148 | 0.267 |
 
-So sánh leakage giữ vững: full features đạt macro-F1 ≈ 0.96–0.98 (boosting) so với safe features ~0.6 → chứng minh leakage rõ ràng.
+So sánh leakage giữ vững: full features đạt macro-F1 ≈ 0.98 (boosting: XGBoost 0.982, LightGBM 0.983) so với safe features ~0.63 → chứng minh leakage rõ ràng.
 
-> Lưu ý: số liệu trên là từ lần chạy xác minh (Random Forest/Extra Trees được giảm cây + lấy mẫu để chạy nhanh trong môi trường kiểm thử). Khi bạn Restart & Run All trên máy với tham số gốc (200 cây), điểm RF/ET sẽ nhỉnh hơn nhưng **xu hướng không đổi**: boosting (XGBoost/LightGBM) vượt trội, hai mô hình rừng over-predict mạnh trên safe features.
+> Lưu ý: đây là số liệu lần chạy **đầy đủ cuối cùng** (tham số gốc, RF/ET 200 cây) trên toàn bộ ~1,76 triệu session. Hai mô hình boosting dẫn đầu và sát nhau (LightGBM 0.642 ≈ XGBoost 0.628); XGBoost vẫn là mô hình chính theo phân công. Random Forest và Extra Trees over-predict mạnh trên safe features (precision thấp → micro-F1 sụp).
 
 ## 4. Khuyến nghị tiếp theo (chưa sửa, để nhóm cân nhắc)
 
