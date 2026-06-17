@@ -1,21 +1,25 @@
 model,feature_set,evaluation_type,split,macro_f1,micro_f1,weighted_f1,macro_precision,macro_recall,micro_precision,micro_recall,macro_pr_auc,hamming_loss,subset_accuracy,n_labels,support_total,predicted_total
-Dummy baseline,safe_features,Đa nhãn - baseline ngẫu nhiên,validation,0.0037,0.0108,0.0109,0.0037,0.0037,0.0107,0.011,0.0044,0.0088,0.9479,12,18676,19162
-Dummy baseline,safe_features,Đa nhãn - baseline ngẫu nhiên,test,0.004,0.0114,0.0115,0.004,0.004,0.0114,0.0114,0.0045,0.009,0.9473,12,19133,19146
-XGBoost,safe_features,Đa nhãn - safe features (kết quả chính),validation,0.5884,0.7971,0.7996,0.6494,0.6358,0.7846,0.8101,0.6128,0.0018,0.9819,12,18676,19283
-XGBoost,safe_features,Đa nhãn - safe features (kết quả chính),test,0.5948,0.7939,0.7967,0.636,0.6414,0.7791,0.8092,0.6122,0.0019,0.9811,12,19133,19873
-Decision Tree,safe_features,Đa nhãn - safe features (kết quả chính),validation,0.494,0.7192,0.7489,0.4316,0.6894,0.6161,0.8638,0.5059,0.003,0.974,12,18676,26185
-Decision Tree,safe_features,Đa nhãn - safe features (kết quả chính),test,0.4934,0.7188,0.748,0.4307,0.6928,0.6157,0.8633,0.5164,0.0031,0.9734,12,19133,26826
-Random Forest,safe_features,Đa nhãn - safe features (kết quả chính),validation,0.3468,0.2524,0.5503,0.3938,0.4631,0.1579,0.6281,0.4473,0.0164,0.8667,12,18676,74298
-Random Forest,safe_features,Đa nhãn - safe features (kết quả chính),test,0.34,0.2602,0.5552,0.3613,0.5025,0.1634,0.6379,0.4591,0.0164,0.8667,12,19133,74686
-LightGBM,safe_features,Đa nhãn - safe features (kết quả chính),validation,0.603,0.8211,0.8241,0.6531,0.6624,0.7783,0.8688,0.6164,0.0017,0.9833,12,18676,20846
-LightGBM,safe_features,Đa nhãn - safe features (kết quả chính),test,0.6107,0.8203,0.8224,0.6579,0.6524,0.777,0.8687,0.628,0.0017,0.9829,12,19133,21389
-XGBoost,full_features,Đa nhãn - full features (học lại luật / leakage),validation,0.9836,0.9972,0.997,0.9884,0.9796,0.9983,0.9961,0.9903,0.0,0.9997,12,18676,18634
-XGBoost,full_features,Đa nhãn - full features (học lại luật / leakage),test,0.9813,0.9972,0.9968,0.9898,0.9749,0.9988,0.9955,0.9878,0.0,0.9997,12,19133,19069
-LightGBM,full_features,Đa nhãn - full features (học lại luật / leakage),validation,0.9843,0.9973,0.9972,0.9892,0.9803,0.9985,0.9962,0.9881,0.0,0.9997,12,18676,18633
-LightGBM,full_features,Đa nhãn - full features (học lại luật / leakage),test,0.9818,0.9972,0.9969,0.9893,0.9761,0.9987,0.9957,0.987,0.0,0.9997,12,19133,19075
-Decision Tree,full_features,Đa nhãn - full features (học lại luật / leakage),validation,0.9779,0.9956,0.996,0.9713,0.9857,0.9938,0.9973,0.9856,0.0,0.9995,12,18676,18742
-Decision Tree,full_features,Đa nhãn - full features (học lại luật / leakage),test,0.977,0.9957,0.9961,0.971,0.984,0.9943,0.9971,0.986,0.0,0.9995,12,19133,19188
-Random Forest,full_features,Đa nhãn - full features (học lại luật / leakage),validation,0.8534,0.9512,0.9549,0.7948,0.9338,0.9112,0.9949,0.9365,0.0005,0.9953,12,18676,20391
-Random Forest,full_features,Đa nhãn - full features (học lại luật / leakage),test,0.8547,0.9505,0.9546,0.7982,0.944,0.9102,0.9945,0.9445,0.0005,0.9952,12,19133,20904
-XGBoost (shuffled labels),safe_features,Đa nhãn - sanity check: tráo nhãn phải tệ đi,validation,0.0546,0.1329,0.1284,0.0514,0.077,0.1006,0.1956,0.0201,0.0113,0.9079,12,18676,36317
-XGBoost (shuffled labels),safe_features,Đa nhãn - sanity check: tráo nhãn phải tệ đi,test,0.0529,0.1357,0.1303,0.0487,0.0757,0.1038,0.1961,0.0207,0.0113,0.9079,12,19133,36162
+Dummy baseline,safe_features,Đa nhãn - baseline ngẫu nhiên,validation,0.004,0.0105,0.0105,0.004,0.004,0.0103,0.0106,0.0048,0.0096,0.9473,12,20242,20705
+Dummy baseline,safe_features,Đa nhãn - baseline ngẫu nhiên,test,0.0042,0.0108,0.0108,0.0042,0.0042,0.0108,0.0107,0.0049,0.0097,0.9467,12,20767,20686
+XGBoost,safe_features,Đa nhãn - safe features (kết quả chính),validation,0.6207,0.792,0.7838,0.6634,0.598,0.7929,0.7912,0.6394,0.002,0.9807,12,20242,20198
+XGBoost,safe_features,Đa nhãn - safe features (kết quả chính),test,0.6281,0.7896,0.7818,0.6714,0.6063,0.7894,0.7898,0.6463,0.0021,0.9799,12,20767,20777
+Decision Tree,safe_features,Đa nhãn - safe features (kết quả chính),validation,0.5335,0.7189,0.7327,0.4759,0.6431,0.6286,0.8394,0.5401,0.0031,0.9731,12,20242,27030
+Decision Tree,safe_features,Đa nhãn - safe features (kết quả chính),test,0.5361,0.7175,0.7317,0.478,0.6474,0.627,0.8386,0.5495,0.0032,0.9725,12,20767,27775
+Random Forest,safe_features,Đa nhãn - safe features (kết quả chính),validation,0.3513,0.2431,0.5079,0.3921,0.4277,0.1543,0.5726,0.4034,0.0171,0.9113,12,20242,75118
+Random Forest,safe_features,Đa nhãn - safe features (kết quả chính),test,0.3612,0.2508,0.514,0.3883,0.4455,0.1598,0.5824,0.4171,0.0171,0.9107,12,20767,75669
+LightGBM,safe_features,Đa nhãn - safe features (kết quả chính),validation,0.6389,0.8174,0.8088,0.6885,0.6152,0.7905,0.8463,0.6543,0.0018,0.9823,12,20242,21671
+LightGBM,safe_features,Đa nhãn - safe features (kết quả chính),test,0.6422,0.8158,0.807,0.6931,0.619,0.7888,0.8448,0.6588,0.0019,0.9818,12,20767,22242
+Extra Trees,safe_features,Đa nhãn - safe features (kết quả chính),validation,0.2136,0.1408,0.2567,0.3109,0.2501,0.0961,0.2627,0.25,0.0153,0.894,12,20242,55302
+Extra Trees,safe_features,Đa nhãn - safe features (kết quả chính),test,0.2274,0.148,0.2646,0.3118,0.2729,0.1014,0.274,0.2667,0.0155,0.893,12,20767,56122
+XGBoost,full_features,Đa nhãn - full features (học lại luật / leakage),validation,0.9843,0.9972,0.9971,0.9901,0.9792,0.9983,0.9961,0.991,0.0,0.9997,12,20242,20198
+XGBoost,full_features,Đa nhãn - full features (học lại luật / leakage),test,0.9823,0.9973,0.9969,0.992,0.9748,0.9989,0.9956,0.989,0.0,0.9997,12,20767,20698
+LightGBM,full_features,Đa nhãn - full features (học lại luật / leakage),validation,0.9849,0.9975,0.9973,0.9905,0.9802,0.9986,0.9964,0.9906,0.0,0.9997,12,20242,20199
+LightGBM,full_features,Đa nhãn - full features (học lại luật / leakage),test,0.9828,0.9974,0.9971,0.9913,0.976,0.9988,0.9959,0.9897,0.0,0.9997,12,20767,20706
+Decision Tree,full_features,Đa nhãn - full features (học lại luật / leakage),validation,0.9788,0.9959,0.9963,0.9731,0.9857,0.9943,0.9975,0.9875,0.0,0.9995,12,20242,20308
+Decision Tree,full_features,Đa nhãn - full features (học lại luật / leakage),test,0.9782,0.9961,0.9964,0.9733,0.984,0.9948,0.9974,0.9861,0.0,0.9995,12,20767,20821
+Random Forest,full_features,Đa nhãn - full features (học lại luật / leakage),validation,0.8598,0.8686,0.8716,0.7868,0.96,0.7725,0.9919,0.9721,0.0014,0.9842,12,20242,25992
+Random Forest,full_features,Đa nhãn - full features (học lại luật / leakage),test,0.8619,0.8706,0.8738,0.7899,0.9615,0.7758,0.9918,0.9748,0.0014,0.9842,12,20767,26548
+Extra Trees,full_features,Đa nhãn - full features (học lại luật / leakage),validation,0.7338,0.7911,0.7937,0.7639,0.7825,0.7075,0.8971,0.8935,0.0023,0.9764,12,20242,25668
+Extra Trees,full_features,Đa nhãn - full features (học lại luật / leakage),test,0.7408,0.7921,0.7966,0.7654,0.7947,0.7074,0.8998,0.8967,0.0023,0.9757,12,20767,26418
+XGBoost (shuffled labels),safe_features,Đa nhãn - sanity check: tráo nhãn phải tệ đi,validation,0.0844,0.143,0.1363,0.0814,0.1061,0.1113,0.1997,0.0325,0.0115,0.9086,12,20242,36314
+XGBoost (shuffled labels),safe_features,Đa nhãn - sanity check: tráo nhãn phải tệ đi,test,0.0822,0.1446,0.137,0.0792,0.1029,0.1138,0.1982,0.0328,0.0115,0.9086,12,20767,36163
